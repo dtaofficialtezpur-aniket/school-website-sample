@@ -82,7 +82,10 @@ nav.scrolled{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-fi
 .faces i{width:32px;height:32px;border-radius:50%;border:2px solid var(--bg);margin-left:-8px;display:grid;place-items:center;font-style:normal;font-size:.75rem;color:#fff;background:linear-gradient(135deg,var(--accent),#4f8b70)}
 .faces i:first-child{margin-left:0}.faces i:nth-child(2){background:linear-gradient(135deg,#c8a45c,#a98842)}.faces i:nth-child(3){background:linear-gradient(135deg,#5f8fb0,#3b6a8a)}.faces i:nth-child(4){background:linear-gradient(135deg,#b07a5f,#8a5a42)}
 .stage{margin-top:clamp(48px,6vw,80px);position:relative;border-radius:32px;overflow:hidden;aspect-ratio:1200/520;border:1px solid rgba(255,255,255,.9);box-shadow:0 50px 90px -40px rgba(31,77,58,.45),0 0 0 1px var(--line)}
-.stage>svg{position:absolute;inset:0;width:100%;height:100%}
+.stage .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.6s var(--ease)}
+.stage:hover .ph{transform:scale(1.08)}
+.stage .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0) 45%,rgba(10,30,20,.38))}
+.stage{background:linear-gradient(160deg,#cfe3d6,#a9cdb5)}
 .glass{position:absolute;background:rgba(255,255,255,.72);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(255,255,255,.9);border-radius:18px;padding:16px 22px;box-shadow:0 20px 40px -20px rgba(20,40,30,.3);font-size:.8rem;color:var(--muted)}
 .glass b{display:block;font-family:var(--serif);font-size:1.9rem;font-weight:400;line-height:1.1;color:var(--ink)}
 .g1{left:36px;bottom:36px;animation:bob 7s ease-in-out infinite}
@@ -96,17 +99,29 @@ nav.scrolled{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-fi
 .accr em{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);opacity:.55}
 
 /* stats */
-.stats{padding:0}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}
-.stat{padding:48px 28px;border-right:1px solid var(--line)}
-.stat:last-child{border:0}
-.stat b{font-family:var(--serif);font-size:clamp(2.4rem,4.6vw,3.8rem);font-weight:300;display:block;line-height:1}
-.stat span{color:var(--muted);font-size:.88rem;display:block;margin-top:12px}
+.stats{padding:clamp(56px,7vw,100px) 0 0}
+.stats-panel{position:relative;overflow:hidden;border-radius:32px;background:var(--accent);color:#f4f2ea;padding:clamp(36px,5vw,72px);isolation:isolate;box-shadow:0 50px 90px -50px rgba(31,77,58,.7)}
+.stats-panel .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:.28;mix-blend-mode:luminosity}
+.stats-panel::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 85% 0%,rgba(200,164,92,.28),transparent 55%),linear-gradient(180deg,rgba(23,58,44,.55),rgba(23,58,44,.92))}
+.stats-head{max-width:620px;margin-bottom:clamp(32px,5vw,56px)}
+.stats-head .eyebrow{color:var(--accent-2)}
+.stats-head h2{color:#fff;margin:16px 0 0;font-size:clamp(1.9rem,3.6vw,3rem)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{padding:28px 26px 26px;border-radius:22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:transform .5s var(--ease),background .4s,border-color .4s}
+.stat:hover{transform:translateY(-6px);background:rgba(255,255,255,.12);border-color:rgba(200,164,92,.6)}
+.si{width:44px;height:44px;border-radius:14px;background:rgba(200,164,92,.18);color:var(--accent-2);display:grid;place-items:center;margin-bottom:34px}
+.si svg{width:22px;height:22px}
+.stat b{font-family:var(--serif);font-size:clamp(2.6rem,4.4vw,3.8rem);font-weight:300;display:block;line-height:1;color:#fff;letter-spacing:-.02em}
+.stat span{display:block;margin-top:14px;font-size:.95rem;color:#fff;padding-top:14px;border-top:1px solid rgba(255,255,255,.16)}
+.stat em{display:block;font-style:normal;font-size:.8rem;margin-top:4px;color:rgba(255,255,255,.62)}
 
 /* about */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,100px);align-items:center}
 .about-art{aspect-ratio:1/1.05;border-radius:var(--radius);background:var(--soft);position:relative;overflow:hidden;border:1px solid var(--line)}
-.about-art svg{position:absolute;inset:0;width:100%;height:100%}
+.about-art .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.badge-y{position:absolute;left:20px;bottom:20px;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:16px;padding:12px 20px;display:flex;flex-direction:column;line-height:1.1}
+.badge-y b{font-weight:500;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.badge-y i{font-family:var(--serif);font-style:normal;font-size:1.9rem;color:var(--accent)}
 .about p{color:var(--muted);margin-bottom:18px;font-weight:300}
 .values{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px}
 .values div{border-top:1px solid var(--line);padding-top:16px}
@@ -158,9 +173,10 @@ nav.scrolled{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-fi
 .env-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:190px;gap:16px}
 .tile{border-radius:var(--radius);position:relative;overflow:hidden;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;isolation:isolate;transition:transform .6s var(--ease)}
 .tile:hover{transform:scale(.985)}
-.tile::before{content:"";position:absolute;inset:0;z-index:-2;transition:transform .9s var(--ease)}
-.tile:hover::before{transform:scale(1.07)}
-.tile::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(transparent 30%,rgba(0,0,0,.55))}
+.tile::before{content:"";position:absolute;inset:0;z-index:-3}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1s var(--ease)}
+.tile:hover img{transform:scale(1.07)}
+.tile::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(transparent 35%,rgba(8,20,14,.72))}
 .tile h3{font-size:1.35rem}
 .tile p{font-size:.82rem;opacity:.85;font-weight:300}
 .t1{grid-column:span 3;grid-row:span 2}.t2{grid-column:span 3}.t3{grid-column:span 2}.t4{grid-column:span 1}.t5{grid-column:span 2}.t6{grid-column:span 4}
@@ -247,7 +263,6 @@ footer{padding:64px 0 36px}
   .stage{aspect-ratio:16/10}
   .glass.g1{left:14px;bottom:14px}.glass.g3{right:14px;top:14px}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
   .cards{grid-template-columns:1fr 1fr}
   .toppers{grid-template-columns:1fr 1fr}
   .steps{grid-template-columns:1fr 1fr}
@@ -258,7 +273,7 @@ footer{padding:64px 0 36px}
 }
 @media (max-width:620px){
   .wrap{width:calc(100% - 32px)}
-  .cards,.steps,.values{grid-template-columns:1fr}
+  .cards,.steps,.values,.stats-grid{grid-template-columns:1fr}.stats-panel{border-radius:24px}
   .row2{grid-template-columns:1fr}
   .event{grid-template-columns:70px 1fr}.event .tag{display:none}
   .hero{padding-top:110px}
@@ -312,37 +327,8 @@ footer{padding:64px 0 36px}
   </div>
   <div class="wrap">
     <div class="stage rv" style="--d:.2s">
-      <svg viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6efdd"/><stop offset="1" stop-color="#e4efe6"/></linearGradient>
-          <linearGradient id="sun" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1d894"/><stop offset="1" stop-color="#d5ae62"/></linearGradient>
-          <linearGradient id="h1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9cdb5"/><stop offset="1" stop-color="#8fbba0"/></linearGradient>
-          <linearGradient id="h2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5f9a7d"/><stop offset="1" stop-color="#3f7a5f"/></linearGradient>
-          <linearGradient id="h3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c6a50"/><stop offset="1" stop-color="#1f4d3a"/></linearGradient>
-        </defs>
-        <rect width="1200" height="520" fill="url(#sky)"/>
-        <circle cx="880" cy="170" r="210" fill="#fff" opacity=".35"/>
-        <circle cx="880" cy="170" r="130" fill="#fff" opacity=".4"/>
-        <circle cx="880" cy="170" r="70" fill="url(#sun)"/>
-        <g fill="#fff" opacity=".8"><ellipse cx="220" cy="110" rx="70" ry="16"/><ellipse cx="270" cy="96" rx="44" ry="14"/><ellipse cx="560" cy="70" rx="60" ry="13"/><ellipse cx="1060" cy="90" rx="50" ry="12"/></g>
-        <path d="M0 330 Q220 250 420 310 T800 290 T1200 300 V520 H0z" fill="url(#h1)"/>
-        <path d="M0 380 Q260 320 520 370 T1200 350 V520 H0z" fill="url(#h2)"/>
-        <g transform="translate(430 190)">
-          <path d="M0 190V90l170-80 170 80v100z" fill="#fbfaf7"/>
-          <path d="M-18 190V104h56v86zM302 190V104h56v86z" fill="#f1ede1"/>
-          <path d="M170 10l-170 80h340z" fill="#e7e0cf"/>
-          <rect x="140" y="-34" width="60" height="64" rx="3" fill="#fbfaf7"/>
-          <circle cx="170" cy="-6" r="14" fill="#fff" stroke="#c8a45c" stroke-width="3"/>
-          <path d="M170 -6V-14M170 -6l7 3" stroke="#1f4d3a" stroke-width="2" stroke-linecap="round"/>
-          <path d="M170 -34v-22" stroke="#1f4d3a" stroke-width="2"/><path d="M170 -56l26 8-26 8z" fill="#c8a45c"/>
-          <g fill="#cfe3d6"><rect x="30" y="118" width="34" height="46" rx="3"/><rect x="82" y="118" width="34" height="46" rx="3"/><rect x="224" y="118" width="34" height="46" rx="3"/><rect x="276" y="118" width="34" height="46" rx="3"/></g>
-          <path d="M140 190v-62a30 30 0 0 1 60 0v62z" fill="#1f4d3a"/>
-          <g fill="#e7e0cf"><rect x="120" y="110" width="8" height="80"/><rect x="212" y="110" width="8" height="80"/></g>
-        </g>
-        <path d="M0 440 Q300 400 600 430 T1200 420 V520 H0z" fill="url(#h3)"/>
-        <path d="M545 520 Q585 470 600 430 Q615 470 655 520z" fill="#f3ecd9" opacity=".9"/>
-        <g fill="#2c6a50"><circle cx="170" cy="400" r="46"/><rect x="164" y="420" width="12" height="40" fill="#5b4632"/><circle cx="260" cy="420" r="34"/><rect x="255" y="436" width="10" height="30" fill="#5b4632"/><circle cx="1040" cy="395" r="50"/><rect x="1034" y="418" width="12" height="44" fill="#5b4632"/><circle cx="960" cy="420" r="32"/><rect x="955" y="436" width="10" height="30" fill="#5b4632"/></g>
-      </svg>
+      <img class="ph" src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1800&q=75" alt="Aurelia Academy main building with lawns in morning light" fetchpriority="high">
+      <span class="shade"></span>
       <div class="glass g1"><b>98.6%</b><span>Board pass rate</span></div>
       <div class="glass g2"><i></i><div><b>12 acres</b><span>Green, solar-powered campus</span></div></div>
       <div class="glass g3"><b>1 : 14</b><span>Teacher to student</span></div>
@@ -355,26 +341,28 @@ footer{padding:64px 0 36px}
 </header>
 
 <section class="stats">
-  <div class="wrap stats-grid">
-    <div class="stat rv"><b data-count="26" data-suffix="">0</b><span>Years of excellence</span></div>
-    <div class="stat rv" style="--d:.08s"><b data-count="2400" data-suffix="+">0</b><span>Students enrolled</span></div>
-    <div class="stat rv" style="--d:.16s"><b data-count="140" data-suffix="">0</b><span>Dedicated educators</span></div>
-    <div class="stat rv" style="--d:.24s"><b data-count="96" data-suffix="%">0</b><span>Alumni at top universities</span></div>
+  <div class="wrap">
+    <div class="stats-panel rv">
+      <img class="bgimg" src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1800&q=60" alt="" loading="lazy">
+      <div class="stats-head">
+        <span class="eyebrow">Aurelia in numbers</span>
+        <h2>A legacy measured in lives shaped.</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/></svg></div><b data-count="26" data-suffix="">0</b><span>Years of excellence</span><em>Founded in 1998</em></div>
+        <div class="stat"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14.5a5 5 0 0 1 4.5 5"/></svg></div><b data-count="2400" data-suffix="+">0</b><span>Students enrolled</span><em>Grades K–12</em></div>
+        <div class="stat"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M7 10.5V15c0 1.4 2.2 3 5 3s5-1.6 5-3v-4.5"/></svg></div><b data-count="140" data-suffix="">0</b><span>Dedicated educators</span><em>68% hold postgraduate degrees</em></div>
+        <div class="stat"><div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div><b data-count="96" data-suffix="%">0</b><span>Alumni at top universities</span><em>Across 18 countries</em></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="about" class="about">
   <div class="wrap about-grid">
     <div class="about-art rv">
-      <svg viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <rect width="400" height="420" fill="none"/>
-        <circle cx="200" cy="210" r="150" fill="none" stroke="currentColor" stroke-opacity=".12" style="color:var(--ink)"/>
-        <circle cx="200" cy="210" r="104" fill="none" stroke="currentColor" stroke-opacity=".12" style="color:var(--ink)"/>
-        <circle cx="200" cy="210" r="58" fill="var(--accent)"/>
-        <circle cx="312" cy="120" r="14" fill="var(--accent-2)"/>
-        <circle cx="96" cy="290" r="9" fill="var(--accent)" opacity=".5"/>
-        <path d="M172 214l22 22 36-44" fill="none" stroke="var(--bg)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <img class="ph" src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1000&q=75" alt="Students studying together in a bright classroom" loading="lazy">
+      <div class="badge-y"><b>Since</b><i>1998</i></div>
     </div>
     <div class="about">
       <span class="eyebrow rv">About us</span>
@@ -454,12 +442,12 @@ footer{padding:64px 0 36px}
       <p class="lead rv">Twelve acres of gardens, daylight-filled classrooms and modern facilities — designed to be safe, sustainable and inspiring.</p>
     </div>
     <div class="env-grid">
-      <div class="tile t1 rv"><h3>Green Campus</h3><p>Twelve acres, 600+ trees, a kitchen garden and solar-powered buildings.</p></div>
-      <div class="tile t2 rv" style="--d:.08s"><h3>Smart Classrooms</h3><p>Bright, ventilated rooms with interactive displays.</p></div>
-      <div class="tile t3 rv"><h3>Science &amp; Robotics Labs</h3><p>Hands-on experiments from Grade 3.</p></div>
-      <div class="tile t4 rv" style="--d:.08s"><h3>Library</h3><p>40,000 books</p></div>
-      <div class="tile t5 rv"><h3>Sports Complex</h3><p>Pool, courts &amp; turf field.</p></div>
-      <div class="tile t6 rv" style="--d:.08s"><h3>Arts &amp; Performance Centre</h3><p>400-seat auditorium, music rooms and open studios for art, dance and theatre.</p></div>
+      <div class="tile t1 rv"><img src="https://images.unsplash.com/photo-1576495199011-eb94736d05d6?auto=format&fit=crop&w=1200&q=72" alt="Modern campus building beside green lawns" loading="lazy"><h3>Green Campus</h3><p>Twelve acres, 600+ trees, a kitchen garden and solar-powered buildings.</p></div>
+      <div class="tile t2 rv" style="--d:.08s"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=72" alt="Students in a bright classroom" loading="lazy"><h3>Smart Classrooms</h3><p>Bright, ventilated rooms with interactive displays.</p></div>
+      <div class="tile t3 rv"><img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=72" alt="Laboratory glassware" loading="lazy"><h3>Science &amp; Robotics Labs</h3><p>Hands-on experiments from Grade 3.</p></div>
+      <div class="tile t4 rv" style="--d:.08s"><img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=600&q=72" alt="Library shelves" loading="lazy"><h3>Library</h3><p>40,000 books</p></div>
+      <div class="tile t5 rv"><img src="https://images.unsplash.com/photo-1594608661623-aa0bd3a69d98?auto=format&fit=crop&w=800&q=72" alt="Young children walking to school with backpacks" loading="lazy"><h3>Early Years Campus</h3><p>Safe, joyful play spaces.</p></div>
+      <div class="tile t6 rv" style="--d:.08s"><img src="https://images.unsplash.com/photo-1519452575417-564c1401ecc0?auto=format&fit=crop&w=1400&q=72" alt="Auditorium seating" loading="lazy"><h3>Arts &amp; Performance Centre</h3><p>400-seat auditorium, music rooms and open studios for art, dance and theatre.</p></div>
     </div>
     <div class="facts">
       <div class="rv"><b>Safe by design</b><span>CCTV, trained staff, GPS-enabled buses.</span></div>
